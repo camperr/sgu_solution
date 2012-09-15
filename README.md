@@ -1,2 +1,2 @@
-my solutions to problems on http://acm.sgu.ru
-Some solutions may even contain errors.If you find some,please email to me:zhangnan.up@gmail.com
+Solutions to problems on http://acm.sgu.ru.
+Notice that errors may still exist.If you get to it,email to me:zncamper@gmail.com
