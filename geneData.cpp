@@ -1,19 +1,5 @@
 /*
- * =====================================================================================
- *
- *       Filename:  geneData.cpp
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  06/15/2012 01:06:35 AM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  YOUR NAME (), 
- *   Organization:  
- *
- * =====================================================================================
+ * Author: nzh@UESTC
  */
 #include <stdlib.h>
 #include <ctime>
