@@ -19,10 +19,10 @@ class SegmentTree{
         SegmentTree(){
             memset(tr,-1,sizeof(tr));
         }
-        void build(int l,int r,int c){
+        void build(int l,int r,int c,int val){
             tr[c].low=l;
             tr[c].high=r;
-            tr[c].val=0;
+            tr[c].val=val;
             if(l>=r) return;
             int mid=(l+r)>>1;
             build(l,mid,c<<1);
@@ -64,7 +64,7 @@ class ST2{
     void build(int u,int v,int l,int r,int c,int val){
         st2[c].l=u;
         st2[c].r=v;
-        st2[c].build(l,r,1,val);
+        st2[c].st.build(l,r,1,val);
         if(u>=v) return;
         int mid=(u+v)>>1;
         build(u,mid,l,r,c<<1);
@@ -72,7 +72,7 @@ class ST2{
     }
     void update(int u,int v,int l,int r,int c,int val){
         if(st2[c].l==u && st2[c].r==v){
-            st2[c].update(l,r,1,val);
+            st2[c].st.update(l,r,1,val);
             return;
         }
         int mid=(st2[c].l+st2[c].v)>>1;
@@ -85,7 +85,7 @@ class ST2{
     }
     void query(int u,int v,int l,int r,int c,int val){
         if(st2[c].l==u && st2[c].r==v){
-            return st2[c].query(l,r,1,val);
+            return st2[c].st.query(l,r,1,val);
         }
         int mid=(st2[c].l+st2[c].r)>>1;
         if(v<=mid) return query(u,v,l,r,c<<1,val);
