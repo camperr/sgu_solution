@@ -4,26 +4,27 @@
 #include <stdlib.h>
 #include <cstdio>
 #include <cmath>
+#define LL long long
 using namespace std;
-int bx,by,ex,ey,n;
+LL bx,by,ex,ey,n;
 class Point{
     public:
-        int x,y;
-        int pointProduct(Point sec){
+        LL x,y;
+        LL pointProduct(Point sec){
             return x*sec.x+y*sec.y;
         }
-        int crossProduct(Point sec){
+        LL crossProduct(Point sec){
             return x*sec.y-y*sec.x;
         }
 };
 bool noSolution=false;
-int d[8][3]={{-1,-1,2},{1,-1,3},{1,1,0},{-1,1,1},{0,-1,6},{1,0,7},{0,1,4},{-1,0,5}};
+LL d[8][3]={{-1,-1,2},{1,-1,3},{1,1,0},{-1,1,1},{0,-1,6},{1,0,7},{0,1,4},{-1,0,5}};
 class Cell{
     public:
-        int ic,oc;
+        LL ic,oc;
         Point lb;
         Point ver[4];
-        void setLb(int x,int y){
+        void setLb(LL x,LL y){
             lb.x=x;
             lb.y=y;
         }
@@ -37,7 +38,7 @@ class Cell{
             ver[3].y=lb.y+1;
         }
         void crossPoint(Point ed){
-           int i;
+           LL i;
            for(i=0;i<4;i++){
                 if(ed.pointProduct(ver[i])>=0 && ed.crossProduct(ver[i])==0){
                     if(ver[i].x==ed.x && ver[i].y==ed.y) noSolution=true;
@@ -50,7 +51,7 @@ class Cell{
            }
         }
         void crossEdge(Point ed){
-            int i;
+            LL i;
             for(i=0;i<4;i++){
                 if(ed.crossProduct(ver[i])*ed.crossProduct(ver[(i+1)%4])<0){
                     if(ic==-1){
@@ -84,20 +85,20 @@ void initalize(){
     else ce.ic=3;
 }
 void solve(){
-    int i;
+    LL i;
     for(i=0;i<n-1;i++){
         ce.initVer();
         ce.crossPoint(ed);
         ce.crossEdge(ed);
-        printf("%d %d %d %d\n",ce.lb.x,ce.lb.y,ce.ic,ce.oc);
+        printf("%lld %lld %lld %lld\n",ce.lb.x,ce.lb.y,ce.ic,ce.oc);
         ce.getNext();
     }
 }
 int main(){
     freopen("in.txt","r",stdin);
-    scanf("%d %d %d %d %d",&bx,&by,&ex,&ey,&n);
+    scanf("%lld %lld %lld %lld %lld",&bx,&by,&ex,&ey,&n);
     initalize();
     solve();
     if(noSolution) printf("no solution\n");
-    else printf("%d %d\n",ce.lb.x+bx,ce.lb.y+by);
+    else printf("%lld %lld\n",ce.lb.x+bx,ce.lb.y+by);
 }
